@@ -103,7 +103,7 @@ def sql_signupinsert(account, password,  username,email):
             cur.execute(sql, (account, password,username, email))
     # conn is not autocommit by default. So you must commit to save your changes.
         conn.commit()
-def sql_selectone(account):
+def sql_selectact(account):
     conn = pymysql.connect(host='localhost',
                                  user='root',
                                  password='kjh123efr',
@@ -115,6 +115,21 @@ def sql_selectone(account):
         #with conn.cur object cur session
         with conn.cursor() as cur:
            sql="SELECT * FROM `member` WHERE `account` = '"+ account +"'"
+           cur.execute(sql)
+           data=cur.fetchone()
+           return data
+def sql_selectpwd(password):
+    conn = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='kjh123efr',
+                                 database='aiweb',
+                                 charset='utf8mb4')
+
+    #with conn session 
+    with conn:
+        #with conn.cur object cur session
+        with conn.cursor() as cur:
+           sql="SELECT * FROM `member` WHERE `account` = '"+ password +"'"
            cur.execute(sql)
            data=cur.fetchone()
            return data
@@ -134,4 +149,8 @@ def sql_search(account):
            cur.execute(sql)
            data=cur.fetchall()
            return data
+
+
+
+
 #=================================================
