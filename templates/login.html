@@ -32,7 +32,7 @@
   <!-- main  -->
    <div class=" text-center main" style="margin-top: 100px;">
     <main class="form-signin">
-      <form method=post  autocomplete="off">
+      <form method=post  action="{{ url_for('login') }}" autocomplete="off">
         <p><img  src="{{ url_for('static', filename='images/reddit.png') }}" alt="logo" width="50" height="50"></p>
         <h1 class="h3 mb-3 fw-normal"><b>會員登入</b> </h1>
            <!-- 帳號輸入框 -->
