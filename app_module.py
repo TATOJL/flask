@@ -61,6 +61,21 @@ def sql_update(account,password,username,email,identity_type,accountdata):
     # conn is not autocommit by default. So you must commit to save your changes.
         conn.commit()
 
+def sql_selectone(account):
+    conn = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='kjh123efr',
+                                 database='aiweb',
+                                 charset='utf8mb4')
+
+    #with conn session 
+    with conn:
+        #with conn.cur object cur session
+        with conn.cursor() as cur:
+           sql="SELECT * FROM `member` WHERE `account` = '"+ account +"'"
+           cur.execute(sql)
+           data=cur.fetchone()
+           return data
 
 
 #define function sql_insert()
@@ -129,7 +144,7 @@ def sql_selectpwd(password):
     with conn:
         #with conn.cur object cur session
         with conn.cursor() as cur:
-           sql="SELECT * FROM `member` WHERE `account` = '"+ password +"'"
+           sql="SELECT * FROM `member` WHERE `password` = '"+ password +"'"
            cur.execute(sql)
            data=cur.fetchone()
            return data

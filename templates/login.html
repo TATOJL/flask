@@ -64,10 +64,53 @@
           </span>
         </div>          
      </div>
-       
+                  <!-- 顯示訊息  -->
+    <!-- 成功訊息 -->
+    <div class="container mt-3 ">
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
+     {% if messages %}
+     {% for message in messages %}
+     <div class="alert alert-success alert-dismissible" style="font-size: x-large;">
+       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+       {{message}}
+     </div> 
+      {% endfor %}
+
+      {% endif %}
+     {% endwith %}
+ </div> 
+ <!-- 警告訊息 -->
+ <div class="container mt-3 ">
+   {% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible" style="font-size: x-large;">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{message}}
+  </div> 
+   {% endfor %}
+
+   {% endif %}
+  {% endwith %}
+</div>
+ <!-- 錯誤訊息 -->
+ <div class="container mt-3 ">
+   {% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-danger alert-dismissible" style="font-size: x-large;">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{message}}
+  </div> 
+   {% endfor %}
+
+   {% endif %}
+  {% endwith %}
+</div> 
         <button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
         
       </form>
+   
     </main>
    </div>
      
