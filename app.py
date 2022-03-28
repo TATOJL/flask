@@ -1,8 +1,8 @@
 
-from flask import Flask, render_template ,request,redirect,url_for, flash,session,Blueprint
+from flask import Flask, render_template ,request,redirect,url_for, flash,session
 import app_module as m
 app = Flask(__name__)
-app.secret_key ="secret key" 
+
   
 @ app.route('/')
 def index():
@@ -26,8 +26,7 @@ def signupinsert():
                break
             return redirect(url_for('signup'))         
 @ app.route('/login' ,methods=['GET','POST'])
-def login():
-        
+def login():       
         session.clear()     
         if request.method == 'POST':
                a=request.form['account']
@@ -41,19 +40,23 @@ def login():
                                        a=session.get('account')
                                        b=m.sql_selectone(a)   
                                        return render_template('content.html',b=b)
+                                       
                                else:
-                                        flash("密碼錯誤請重新輸入","warning") 
+                                        flash("密碼錯誤請重新輸入","danger") 
                                         break 
                           
-                       flash("帳號尚未註冊請先註冊帳號","danger")
+                       flash("帳號尚未註冊請先註冊帳號","warning")
+                       break
         return render_template('login.html')  
 
-@ app.route('/logout',methons=['GET','POST']) 
+@ app.route('/logout') 
 def logout():
-        # session.clear()   
-        return render_template('logout.html') 
+        session.clear()   
+        flash("已成功登出")
+        return render_template('index.html') 
 
         
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.secret_key ="secret key" 
+    app.run(debug=True,host='127.0.0.1',port=5000)
