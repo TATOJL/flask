@@ -35,7 +35,7 @@ def login():
                        actdata=m.sql_selectact(a)
                        pwddata=m.sql_selectpwd(p)
                        if not actdata ==None:
-                               if not pwddata ==None:
+                               if  pwddata ==actdata:
                                        session['account'] = a
                                        a=session.get('account')
                                        b=m.sql_selectone(a)   
