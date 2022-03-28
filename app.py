@@ -52,7 +52,6 @@ def login():
 @ app.route('/logout') 
 def logout():
         session.clear()   
-        flash("已成功登出")
         return render_template('index.html') 
 
         
